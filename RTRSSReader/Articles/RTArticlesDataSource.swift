@@ -52,7 +52,7 @@ extension RTArticlesDataSource: UITableViewDataSource {
             cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
             cell.textLabel?.numberOfLines = 0
             
-            cell.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+            cell.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
             let placehold = URL(fileURLWithPath: "logo.png")
             let resource = ImageResource(downloadURL: model.imgURL ?? placehold, cacheKey: nil)
             cell.imageView?.kf.setImage(with: resource)

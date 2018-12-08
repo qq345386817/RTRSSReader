@@ -14,10 +14,10 @@ class RTFeedDataSource: NSObject {
         case feeds = 0, max
     }
     
-    var feeds: [String]
+    var feeds: [RTFeed]
     weak var owner: MainViewController?
     
-    init(feeds: [String], owner: MainViewController?) {
+    init(feeds: [RTFeed], owner: MainViewController?) {
         self.feeds = feeds
         self.owner = owner
     }
@@ -47,7 +47,7 @@ extension RTFeedDataSource: UITableViewDataSource {
         switch section {
         case .feeds:
             let cell = tableView.dequeueReusableCell(withIdentifier: rtMainVCCellReuseID, for: indexPath)
-            cell.textLabel?.text = feeds[indexPath.row]
+            cell.textLabel?.text = feeds[indexPath.row].title
             return cell
         case .max:
             fatalError("Section out of range!")

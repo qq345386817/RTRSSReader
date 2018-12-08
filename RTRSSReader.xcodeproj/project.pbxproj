@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2029DCB7434FF4F5B3AF2B39 /* Pods_RTRSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CEC54F8EC89B478569BE01 /* Pods_RTRSSReader.framework */; };
+		C21D209121BB61C000875FAC /* RTFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21D209021BB61C000875FAC /* RTFeed.swift */; };
 		C258B6F820F8F8E300322693 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C258B6F720F8F8E300322693 /* CloudKit.framework */; };
 		C2B226E6208B079900B00B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B226E5208B079900B00B76 /* AppDelegate.swift */; };
 		C2B226ED208B079C00B00B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B226EC208B079C00B00B76 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		57CAA27D4E8F182C45AA5882 /* Pods-RTRSSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRSSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRSSReader/Pods-RTRSSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		97A2CB5BA6232CF6936A44BD /* Pods-RTRSSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRSSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRSSReader/Pods-RTRSSReader.release.xcconfig"; sourceTree = "<group>"; };
+		C21D209021BB61C000875FAC /* RTFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTFeed.swift; sourceTree = "<group>"; };
 		C258B6F620F8F8DD00322693 /* RTRSSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTRSSReader.entitlements; sourceTree = "<group>"; };
 		C258B6F720F8F8E300322693 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C2B226E2208B079900B00B76 /* RTRSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C21D208A21BB5EDD00875FAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C21D209021BB61C000875FAC /* RTFeed.swift */,
+				C2B2272E208B1BDB00B00B76 /* RTArticleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C21D208B21BB5F3800875FAC /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C2B22722208B0B0900B00B76 /* MainViewController.swift */,
+				C2B22724208B0C6000B00B76 /* RTFeedDataSource.swift */,
+				C2B22726208B112700B00B76 /* RTFeedStore.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		C21D209621BB6CCB00875FAC /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				C2B22728208B16CE00B00B76 /* RTArticlesViewController.swift */,
+				C2B2272A208B170900B00B76 /* RTArticlesDataSource.swift */,
+				C2B22730208B1CBF00B00B76 /* RTArticleStore.swift */,
+			);
+			path = Articles;
+			sourceTree = "<group>";
+		};
 		C2B226D9208B079900B00B76 = {
 			isa = PBXGroup;
 			children = (
@@ -134,17 +165,13 @@
 		C2B226E4208B079900B00B76 /* RTRSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				C2B226E5208B079900B00B76 /* AppDelegate.swift */,
+				C21D208B21BB5F3800875FAC /* Main */,
+				C21D208A21BB5EDD00875FAC /* Model */,
 				C258B6F620F8F8DD00322693 /* RTRSSReader.entitlements */,
 				C2B22738208B2E4B00B00B76 /* logo.png */,
-				C2B226E5208B079900B00B76 /* AppDelegate.swift */,
 				C2B22720208B0A7E00B00B76 /* YCStore.swift */,
-				C2B22722208B0B0900B00B76 /* MainViewController.swift */,
-				C2B22724208B0C6000B00B76 /* RTFeedDataSource.swift */,
-				C2B22726208B112700B00B76 /* RTFeedStore.swift */,
-				C2B22728208B16CE00B00B76 /* RTArticlesViewController.swift */,
-				C2B2272A208B170900B00B76 /* RTArticlesDataSource.swift */,
-				C2B2272E208B1BDB00B00B76 /* RTArticleModel.swift */,
-				C2B22730208B1CBF00B00B76 /* RTArticleStore.swift */,
+				C21D209621BB6CCB00875FAC /* Articles */,
 				C2B2272C208B178E00B00B76 /* RTWebViewController.swift */,
 				C2B226EC208B079C00B00B76 /* Assets.xcassets */,
 				C2B226EE208B079C00B00B76 /* LaunchScreen.storyboard */,
@@ -193,7 +220,6 @@
 				C2B226DF208B079900B00B76 /* Frameworks */,
 				C2B226E0208B079900B00B76 /* Resources */,
 				DEBB8338D522E5B0A8573F06 /* [CP] Embed Pods Frameworks */,
-				A3EA217C0D8C230347B19BCD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,6 +278,7 @@
 				TargetAttributes = {
 					C2B226E1208B079900B00B76 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -263,10 +290,12 @@
 					};
 					C2B226F5208B079D00B00B76 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 						TestTargetID = C2B226E1208B079900B00B76;
 					};
 					C2B22700208B079D00B00B76 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1010;
 						TestTargetID = C2B226E1208B079900B00B76;
 					};
 				};
@@ -319,21 +348,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A3EA217C0D8C230347B19BCD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTRSSReader/Pods-RTRSSReader-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DEBB8338D522E5B0A8573F06 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,6 +404,7 @@
 				C2B22723208B0B0900B00B76 /* MainViewController.swift in Sources */,
 				C2B22721208B0A7F00B00B76 /* YCStore.swift in Sources */,
 				C2B22725208B0C6000B00B76 /* RTFeedDataSource.swift in Sources */,
+				C21D209121BB61C000875FAC /* RTFeed.swift in Sources */,
 				C2B22729208B16CE00B00B76 /* RTArticlesViewController.swift in Sources */,
 				C2B22727208B112700B00B76 /* RTFeedStore.swift in Sources */,
 				C2B226E6208B079900B00B76 /* AppDelegate.swift in Sources */,
@@ -571,7 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luopeike.RTRSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RTRSSReader/RTRSSReader-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -592,7 +607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.luopeike.RTRSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RTRSSReader/RTRSSReader-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -612,7 +627,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTRSSReader.app/RTRSSReader";
 			};
@@ -633,7 +648,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReaderTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RTRSSReader.app/RTRSSReader";
 			};
@@ -653,7 +668,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RTRSSReader;
 			};
@@ -673,7 +688,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RTRSSReader;
 			};

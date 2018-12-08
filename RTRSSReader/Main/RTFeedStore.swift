@@ -9,20 +9,18 @@
 import Foundation
 import CloudKit
 
-let feeds = ["http://nshipster.cn/feed.xml"]
-
 struct RTFeedStore {
     static let shared = RTFeedStore()
-    func getFeeds(completion: (([String]) -> Void)?) {
-        completion?(feeds)
+    func getFeeds(completion: (([RTFeed]) -> Void)?) {
+        completion?(RTFeed.feeds)
     }
 }
 
 class RTDataManager {
     let privateDB = CKContainer.default().privateCloudDatabase
     
-    func saveFeed(toCloud: ) -> <#return type#> {
-        <#function body#>
+    func saveFeed(toCloud: RTFeed) -> Bool {
+        return false
     }
 }
 

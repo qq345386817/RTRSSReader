@@ -14,9 +14,9 @@ class RTArticleStore: NSObject {
     var loadFinished: (([RTArticleModel]) -> Void)?
     var articles = [RTArticleModel]()
     
-    func loadArticles(feedURL: String, completion: (([RTArticleModel]) -> Void)?) {
+    func loadArticles(feedURL: URL, completion: (([RTArticleModel]) -> Void)?) {
         self.loadFinished = completion
-        let feedParser = MWFeedParser(feedURL: URL(string: feedURL)!)
+        let feedParser = MWFeedParser(feedURL: feedURL)
         feedParser?.delegate = self
         feedParser?.parse()
     }

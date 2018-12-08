@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  RTArticlesViewController.swift
 //  RTRSSReader
 //
 //  Created by 罗培克 on 2018/4/21.
@@ -7,22 +7,22 @@
 //
 
 import UIKit
-import SnapKit
+import SafariServices
 
-let rtMainVCCellReuseID = "RTMainVCCellReuseID"
+let rtArticlesVCCellReuseID = "RTArticlesVCCellReuseID"
 
-class MainViewController: UIViewController {
+class RTArticlesViewController: UIViewController {
     enum Action: ActionType {
-        case loadFeeds
-        case showFeeds(feeds: [String])
+        case loadArticles
+        case showArticles(articles: [RTArticleModel])
     }
     
     enum Command: CommandType {
-        case loadFeeds(completion: ([String]) -> Void)
+        case loadArticles(completion: ([RTArticleModel]) -> Void)
     }
     
     struct State: StateType {
-        var dataSource = RTFeedDataSource(feeds: [], owner: nil)
+        var dataSource = RTArticlesDataSource(articles: [RTArticleModel](), owner: nil)
     }
     
     var store: Store<Action, State, Command>!
@@ -33,12 +33,12 @@ class MainViewController: UIViewController {
         var command: Command? = nil
         
         switch action {
-        case .loadFeeds:
-            command = Command.loadFeeds(completion: { (items) in
-                self?.store.dispatch(.showFeeds(feeds: items))
+        case .loadArticles:
+            command = Command.loadArticles(completion: { (items) in
+                self?.store.dispatch(.showArticles(articles: items))
             })
-        case .showFeeds(let items):
-            state.dataSource = RTFeedDataSource(feeds: items, owner: state.dataSource.owner)
+        case .showArticles(let items):
+            state.dataSource = RTArticlesDataSource(articles: items, owner: state.dataSource.owner)
         }
         
         return (state, command)
@@ -47,12 +47,12 @@ class MainViewController: UIViewController {
     func stateDidChanged(state: State, previousState: State?, command: Command?) {
         if let command = command {
             switch command {
-            case .loadFeeds(let handler):
-                RTFeedStore.shared.getFeeds(completion: handler)
+            case .loadArticles(let handler):
+                RTArticleStore().loadArticles(feedURL: feedURL, completion: handler)
             }
         }
         
-        if previousState == nil || previousState!.dataSource.feeds != state.dataSource.feeds {
+        if previousState == nil || previousState!.dataSource.articles != state.dataSource.articles {
             tableView.dataSource = state.dataSource
             tableView.reloadData()
         }
@@ -60,21 +60,31 @@ class MainViewController: UIViewController {
     
     let cellHeight: CGFloat = 100
     fileprivate lazy var tableView: UITableView = {
-        let result = UITableView(frame: CGRect.zero, style: UITableViewStyle.plain)
+        let result = UITableView(frame: CGRect.zero, style: UITableView.Style.plain)
         result.delegate = self
         result.estimatedSectionHeaderHeight = 0
         result.estimatedSectionFooterHeight = 0
         result.separatorInset = UIEdgeInsets.zero
-        result.register(UITableViewCell.self, forCellReuseIdentifier: rtMainVCCellReuseID)
-        result.cellLayoutMarginsFollowReadableWidth = true
+        result.register(UITableViewCell.self, forCellReuseIdentifier: rtArticlesVCCellReuseID)
         return result
     }()
-
+    
+    var feedURL: URL
+    
+    init(feedURL: URL) {
+        self.feedURL = feedURL
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let dataSource = RTFeedDataSource(feeds: [], owner: self)
+        let dataSource = RTArticlesDataSource(articles: [RTArticleModel](), owner: self)
         let initialState = State(dataSource: dataSource)
         store = Store<Action, State, Command>(reducer: reducer,
                                               initialState: initialState)
@@ -84,11 +94,11 @@ class MainViewController: UIViewController {
         stateDidChanged(state: store.state, previousState: nil, command: nil)
         setupNavigationItem()
         prepareUI()
-        store.dispatch(.loadFeeds)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        store.dispatch(.loadArticles)
     }
     
     deinit {
@@ -100,7 +110,7 @@ class MainViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        title = "RSS List"
+        title = "Articles"
     }
     
     @objc
@@ -114,23 +124,24 @@ class MainViewController: UIViewController {
             make.edges.equalTo(UIEdgeInsets.zero)
         }
     }
-
+    
 }
 
-extension MainViewController: UITableViewDelegate {
+extension RTArticlesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = RTFeedDataSource.Section(rawValue: indexPath.section) else {
+        guard let section = RTArticlesDataSource.Section(rawValue: indexPath.section) else {
             fatalError("Section out of range!")
         }
         switch section {
-        case .feeds:
-            let feedURL = feeds[indexPath.row]
-            let targetVC = RTArticlesViewController(feedURL: feedURL)
-            navigationController?.pushViewController(targetVC, animated: true)
+        case .articles:
+            let article = store.state.dataSource.articles[indexPath.row]
+            let url = URL(string: article.link!)
+            let webVC = RTWebViewController(url: url!)
+            present(webVC, animated: true, completion: nil)
         case .max:
             fatalError("Section out of range!")
         }
