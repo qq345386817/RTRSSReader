@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 
 let feeds = ["http://nshipster.cn/feed.xml"]
 
@@ -16,3 +17,13 @@ struct RTFeedStore {
         completion?(feeds)
     }
 }
+
+class RTDataManager {
+    let privateDB = CKContainer.default().privateCloudDatabase
+    
+    func saveFeed(toCloud: ) -> <#return type#> {
+        <#function body#>
+    }
+}
+
+

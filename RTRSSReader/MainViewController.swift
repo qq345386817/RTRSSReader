@@ -66,6 +66,7 @@ class MainViewController: UIViewController {
         result.estimatedSectionFooterHeight = 0
         result.separatorInset = UIEdgeInsets.zero
         result.register(UITableViewCell.self, forCellReuseIdentifier: rtMainVCCellReuseID)
+        result.cellLayoutMarginsFollowReadableWidth = true
         return result
     }()
 

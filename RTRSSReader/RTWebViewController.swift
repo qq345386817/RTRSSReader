@@ -12,9 +12,15 @@ import SafariServices
 class RTWebViewController: SFSafariViewController {
 
     init(url URL: URL) {
-        let configuration = SFSafariViewController.Configuration()
-        configuration.entersReaderIfAvailable = true
-        super.init(url: URL, configuration: configuration)        
+        if #available(iOS 11.0, *) {
+            let configuration = SFSafariViewController.Configuration()
+            configuration.entersReaderIfAvailable = true
+            configuration.barCollapsingEnabled = true
+            super.init(url: URL, configuration: configuration)
+        } else {
+            // Fallback on earlier versions
+            super.init(url: URL, entersReaderIfAvailable: true)
+        }
     }
     
     override func viewDidLoad() {

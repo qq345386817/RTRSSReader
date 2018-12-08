@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2029DCB7434FF4F5B3AF2B39 /* Pods_RTRSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2CEC54F8EC89B478569BE01 /* Pods_RTRSSReader.framework */; };
+		C258B6F820F8F8E300322693 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C258B6F720F8F8E300322693 /* CloudKit.framework */; };
 		C2B226E6208B079900B00B76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B226E5208B079900B00B76 /* AppDelegate.swift */; };
 		C2B226ED208B079C00B00B76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B226EC208B079C00B00B76 /* Assets.xcassets */; };
 		C2B226F0208B079C00B00B76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B226EE208B079C00B00B76 /* LaunchScreen.storyboard */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		57CAA27D4E8F182C45AA5882 /* Pods-RTRSSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRSSReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTRSSReader/Pods-RTRSSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		97A2CB5BA6232CF6936A44BD /* Pods-RTRSSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTRSSReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTRSSReader/Pods-RTRSSReader.release.xcconfig"; sourceTree = "<group>"; };
+		C258B6F620F8F8DD00322693 /* RTRSSReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RTRSSReader.entitlements; sourceTree = "<group>"; };
+		C258B6F720F8F8E300322693 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C2B226E2208B079900B00B76 /* RTRSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTRSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B226E5208B079900B00B76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2B226EC208B079C00B00B76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2029DCB7434FF4F5B3AF2B39 /* Pods_RTRSSReader.framework in Frameworks */,
+				C258B6F820F8F8E300322693 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +134,7 @@
 		C2B226E4208B079900B00B76 /* RTRSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				C258B6F620F8F8DD00322693 /* RTRSSReader.entitlements */,
 				C2B22738208B2E4B00B00B76 /* logo.png */,
 				C2B226E5208B079900B00B76 /* AppDelegate.swift */,
 				C2B22720208B0A7E00B00B76 /* YCStore.swift */,
@@ -170,6 +175,7 @@
 		FBA80EA8D95962E0C3F9D5EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C258B6F720F8F8E300322693 /* CloudKit.framework */,
 				E2CEC54F8EC89B478569BE01 /* Pods_RTRSSReader.framework */,
 			);
 			name = Frameworks;
@@ -246,6 +252,14 @@
 				TargetAttributes = {
 					C2B226E1208B079900B00B76 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					C2B226F5208B079D00B00B76 = {
 						CreatedOnToolsVersion = 9.3;
@@ -478,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -532,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -546,6 +560,7 @@
 			baseConfigurationReference = 57CAA27D4E8F182C45AA5882 /* Pods-RTRSSReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RTRSSReader/RTRSSReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LEE86U52GR;
 				INFOPLIST_FILE = RTRSSReader/Info.plist;
@@ -553,7 +568,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luopeike.RTRSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RTRSSReader/RTRSSReader-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -566,6 +581,7 @@
 			baseConfigurationReference = 97A2CB5BA6232CF6936A44BD /* Pods-RTRSSReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RTRSSReader/RTRSSReader.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LEE86U52GR;
 				INFOPLIST_FILE = RTRSSReader/Info.plist;
@@ -573,7 +589,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.RTRSSReader;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luopeike.RTRSSReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RTRSSReader/RTRSSReader-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
